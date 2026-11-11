@@ -1,0 +1,45 @@
+services:
+  - type: web
+    name: omnisight-backend
+    runtime: docker
+    dockerContext: backend
+    dockerfilePath: backend/Dockerfile
+    plan: standard
+    healthCheckPath: /health
+    envVars:
+      - key: OMNISIGHT_ENV
+        value: production
+      - key: OMNISIGHT_VLM_ADAPTER
+        value: gemini
+      - key: OMNISIGHT_VLM_PROVIDER
+        value: gemini
+      - key: OMNISIGHT_PATCH_GENERATOR
+        value: gemini
+      - key: OMNISIGHT_VLM_VERIFIER
+        value: gemini
+      - key: OMNISIGHT_WORKSPACE_ROOT
+        value: /tmp/omnisight-workspaces
+      - key: OMNISIGHT_ARTIFACTS_DIR
+        value: /tmp/omnisight
+      - key: PLAYWRIGHT_BROWSERS_PATH
+        value: "0"
+      - key: OMNISIGHT_DATABASE_URL
+        sync: false
+      - key: OMNISIGHT_SUPABASE_URL
+        sync: false
+      - key: OMNISIGHT_SUPABASE_ANON_KEY
+        sync: false
+      - key: OMNISIGHT_SUPABASE_SERVICE_ROLE_KEY
+        sync: false
+      - key: OMNISIGHT_SUPABASE_STORAGE_BUCKET
+        value: scan-artifacts
+      - key: OMNISIGHT_GEMINI_API_KEY
+        sync: false
+      - key: OMNISIGHT_ALLOWED_ORIGINS
+        sync: false
+      - key: OMNISIGHT_GITHUB_APP_ID
+        sync: false
+      - key: OMNISIGHT_GITHUB_APP_INSTALLATION_ID
+        sync: false
+      - key: OMNISIGHT_GITHUB_APP_PRIVATE_KEY
+        sync: false
